@@ -1,6 +1,6 @@
-custom_power = lambda x, e=1: x ** e
+custom_power = lambda x, /, e=1: x ** e
 
-def custom_equation(x, y, a=1, b=1, *, c=1):
+def custom_equation(x, y, /, a=1, b=1, *, c=1):
     return (x ** a + y ** b) / c
 
 _calls = {}
