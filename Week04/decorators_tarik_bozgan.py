@@ -8,7 +8,7 @@ _calls = {}
 def fn_w_counter():
     caller = __import__('inspect').currentframe().f_back.f_code.co_name
     _calls[caller] = _calls.get(caller, 0) + 1
-    return (_calls[caller], dict(_calls))
+    return _calls[caller], dict(_calls)
 
 def performance(f):
     def w(*a, **k):
