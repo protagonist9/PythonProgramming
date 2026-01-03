@@ -1,3 +1,4 @@
+# custom_power (lambda)
 custom_power = lambda x=0, e=1: x ** e
 
 
@@ -22,17 +23,6 @@ def custom_equation(
 
     return (x ** a + y ** b) / c
 
-<<<<<<< HEAD
-def fn_w_counter() -> tuple[int, dict[str, int]]:
-    caller = __name__
-    
-    fn_w_counter.total = getattr(fn_w_counter, "total", 0) + 1
-    fn_w_counter.callers = getattr(fn_w_counter, "callers", {})
- 
-    fn_w_counter.callers[caller] = fn_w_counter.callers.get(caller, 0) + 1
-    
-    return fn_w_counter.total, fn_w_counter.callers.copy()
-=======
 
 _call_count = 0
 
@@ -40,4 +30,3 @@ def fn_w_counter() -> (int, dict[str, int]):
     global _call_count
     _call_count += 1
     return _call_count, {__name__: _call_count}
->>>>>>> 6d9c8062 (Bugs fixed)
