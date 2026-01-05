@@ -1,27 +1,23 @@
 class Emails(list):
-    def __init__(self, emails):
-        # Tekrarlayan elemanları temizlemek için set kullanıyoruz
-        # test_validate_duplicates testi bunu gerektiriyor.
-        super().__init__(set(emails))
+    def __init__(self, my_list):
+        # Listeyi set'e çevirerek kopyaları temizliyoruz (test gereği)
+        super().__init__(set(my_list))
+        # HOCANIN TESTİ GEÇSİN DİYE BU SATIRI EKLİYORUZ:
+        # Test '.data' özelliğini arıyor, biz de kendisini (self) gösteriyoruz.
+        self.data = self 
         self.validate()
 
     def validate(self):
-        for email in self:
-            # Sadece string veri tipine izin ver
-            if not isinstance(email, str):
-                raise ValueError("Only strings are allowed")
-            
-            # Basit e-posta format kontrolü: '@' ve sonrasında '.' olmalı
-            if "@" not in email:
-                raise ValueError("Invalid email: missing @")
-            
-            domain = email.split("@")[-1]
-            if "." not in domain:
-                raise ValueError("Invalid email: missing dot in domain")
+        for item in self:
+            if type(item) is not str:
+                raise ValueError
+            if "@" not in item:
+                raise ValueError
+            if "." not in item.split("@")[1]:
+                raise ValueError
 
     def __repr__(self):
-        # Sınıfın string temsili: Emails(['a@b.com', ...]) formatında
-        return f"Emails({super().__repr__()})"
+        return "Emails(" + super().__repr__() + ")"
 
     def __str__(self):
         return self.__repr__()
