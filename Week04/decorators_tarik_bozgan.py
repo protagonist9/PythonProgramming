@@ -4,22 +4,23 @@ import tracemalloc
 def performance(func):
     def wrapper(*args, **kwargs):
         tracemalloc.start()
-        start = time.perf_counter()
+        t1 = time.perf_counter()
         
         result = func(*args, **kwargs)
         
-        end = time.perf_counter()
-        current, peak = tracemalloc.get_traced_memory()
+        t2 = time.perf_counter()
+        _, peak = tracemalloc.get_traced_memory()
         tracemalloc.stop()
         
-        wrapper.counter += 1
-        wrapper.total_time += (end - start)
-        wrapper.total_mem += peak
+        # Hata buradaydı: Sayaçları wrapper'a değil, performance fonksiyonuna ekliyoruz
+        performance.counter += 1
+        performance.total_time += (t2 - t1)
+        performance.total_mem += peak
         
         return result
-
-    wrapper.counter = 0
-    wrapper.total_time = 0
-    wrapper.total_mem = 0
-    
     return wrapper
+
+# Testin beklediği özellikler (Attributes) ana fonksiyona atanmalı
+performance.counter = 0
+performance.total_time = 0
+performance.total_mem = 0
